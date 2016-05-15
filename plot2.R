@@ -1,6 +1,6 @@
 library(sqldf)
 fileh <- file("household_power_consumption.txt")
-df <- df<-sqldf("select * from fileh where Date == '2/2/2007' or Date == '1/2/2007'", file.format = list(header = TRUE, sep = ";"))
+df<-sqldf("select * from fileh where Date == '2/2/2007' or Date == '1/2/2007'", file.format = list(header = TRUE, sep = ";"))
 
 df[,"datetime"]<-paste(df$Date,df$Time)
 df[,"datetime"]<-as.POSIXct(df$datetime,format = "%d/%m/%Y %H:%M:%S")
