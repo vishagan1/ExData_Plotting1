@@ -1,0 +1,13 @@
+library(sqldf)
+fileh <- file("household_power_consumption.txt")
+df <- df<-sqldf("select * from fileh where Date == '2/2/2007' or Date == '1/2/2007'", file.format = list(header = TRUE, sep = ";"))
+
+df[,"datetime"]<-paste(df$Date,df$Time)
+df[,"datetime"]<-as.POSIXct(df$datetime,format = "%d/%m/%Y %H:%M:%S")
+png("plot3.png",height = 480, width = 480)
+par(mar = c(4,4,2,2))
+plot(x=df$datetime,y=df$Sub_metering_1,xlab = "date-time",ylab = "Energy sub metering",type = 'l',col='blue')
+lines(x=df$datetime,y=df$Sub_metering_2,type = 'l',col= 'red')
+lines(x=df$datetime,y=df$Sub_metering_3,type = 'l', col= 'black')
+legend("topright", c("Sub metering 1", "Sub metering 2", "Sub metering 3"), lty = c(1,1,1), col = c('blue','red','black'))
+dev.off()
