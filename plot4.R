@@ -1,6 +1,6 @@
 library(sqldf)
 fileh <- file("household_power_consumption.txt")
-df <- df<-sqldf("select * from fileh where Date == '2/2/2007' or Date == '1/2/2007'", file.format = list(header = TRUE, sep = ";"))
+df<-sqldf("select * from fileh where Date == '2/2/2007' or Date == '1/2/2007'", file.format = list(header = TRUE, sep = ";"))
 
 png("plot4.png", height = 480, width = 480)
 par(mar = c(4,4,2,2))
